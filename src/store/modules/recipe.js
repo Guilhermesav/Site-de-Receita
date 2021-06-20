@@ -38,7 +38,8 @@ const optionsSearch = {
 const getters = {
     getRecipes: state => state.recipes,
     getFavouriteRecipes: state => state.favouriteRecipes,
-    getSearchedRecipes: state => state.searchedRecipes
+    getSearchedRecipes: state => state.searchedRecipes,
+    getRecipeInfo: state => state.recipeInfo
     
 }
 
@@ -59,7 +60,6 @@ const actions = {
     searchRecipes({commit},param){
         optionsSearch.params = {query: param,number:100}
         axios.request(optionsSearch).then(function (response) {
-            console.log(response)
             commit('getSearchedRecipes',response.data.results);
         }).catch(function (error) {
             console.error(error);
@@ -69,13 +69,17 @@ const actions = {
         commit("recipeInfo",null)
         optionsRecipeInfo.url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`
         axios.request(optionsRecipeInfo).then(function (response) {
-            console.log(response)
-            commit('getSearchedRecipes',response.data.results);
+            let receita = {
+                title : response.data.title,
+                image : response.data.image,
+                extendedIngredients : response.data.extendedIngredients,
+                instructions : response.data.instructions,
+            } 
+            commit('recipeInfo',receita);
         }).catch(function (error) {
             console.error(error);
         });
     }
-
 }
 
 const mutations = {

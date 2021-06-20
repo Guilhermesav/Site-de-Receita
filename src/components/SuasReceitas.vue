@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     ...mapActions(["addRecipes","deleteRecipes"]),
-    createReceita() {
+    createReceita(){
       this.addRecipes(this.form);
     },
   },

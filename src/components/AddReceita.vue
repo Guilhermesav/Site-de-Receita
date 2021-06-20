@@ -50,7 +50,7 @@
       <b-form-group id="input-group-6" label="Como preparar?" label-for="input-6">
         <b-form-input
           id="input-6"
-          v-model="form.summary"
+          v-model="form.instructions"
           placeholder ="Como preparar?"
           required
         ></b-form-input>
@@ -72,7 +72,7 @@ export default {
           preparationMinutes:'',
           extendedIngredients:[],
           servings:'',
-          summary:'',
+          instructions:'',
         },
          options: [
           { value: {name: 'Maçã', id:"1"},text:'Maçã'},

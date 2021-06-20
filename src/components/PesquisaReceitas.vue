@@ -16,7 +16,7 @@
         </b-card-text>
         <router-link :to="{ name: 'receita', params: {id : receita.id}}">
           <b-button variant="primary">Ver mais</b-button>
-        </router-link>
+        </router-link> 
           <b-button variant="primary" @click="addRecipes(receita)">Like</b-button>
       </b-card>
   </div>
