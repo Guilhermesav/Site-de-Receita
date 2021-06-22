@@ -57,6 +57,9 @@ const actions = {
     deleteRecipes({commit},id){
         commit('deleteRecipes',id)
     },
+    updateRecipe({commit},i){
+        commit('updateRecipe',i)
+    },
     searchRecipes({commit},param){
         optionsSearch.params = {query: param,number:100}
         axios.request(optionsSearch).then(function (response) {
@@ -87,6 +90,12 @@ const mutations = {
     addRecipes: (state ,data) =>(state.favouriteRecipes.push(data)),
     getSearchedRecipes:(state,data) =>(state.searchedRecipes = data),
     recipeInfo:(state,data) => (state.recipeInfo = data),
+    updateRecipe:(state,data) =>{
+        const index = state.favouriteRecipes.findIndex(t => t.id === data.id)
+        if(index !==-1){
+            state.favouriteRecipes.splice(index,1,data);
+        }
+    },
     deleteRecipes: (state,id) => (state.favouriteRecipes = state.favouriteRecipes.filter(p => p.id !== id))
 }
 
